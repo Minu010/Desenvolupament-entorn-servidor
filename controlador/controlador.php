@@ -1,7 +1,7 @@
 <?php
 
     ////////////REGISTRO//////////////
-
+    // <!--<script type="text/javascript">function Confirm() {var respuesta = window.alert("Sesión iniciada");if (respuesta == true) {return true;}}</script>-->
     // Verificar si el formulario ha sido enviado
     if(isset($_POST["registro"])) {
         // Conexión a la base de datos
@@ -32,7 +32,9 @@
                 
                 if ($conexion->query($query) === TRUE) {
                     // Si todo es correcto, enviará un mensaje de éxito
-                    echo '<div class="success">Usuario registrado correctamente</div>';
+                    echo '
+                    <div class="success" >Usuario registrado correctamente</div>
+                    ';
                     header("Location:../vista/login.php");
                 } else {
                     // En caso de error al ejecutar la consulta SQL, mostrar el mensaje de error
@@ -67,9 +69,10 @@
 
             // Verificar la contraseña utilizando password_verify
             if (password_verify($password, $hash_almacenado)) {
-                echo '¡Inicio de sesión exitoso!';
                 //redirigir al Dashboard
-                header("Location:../index.php");
+                echo "<script>alert('¡Inicio de sesión exitoso!');</script>";
+                echo '<script>window.location.href="../index.php";</script>';
+                
             } else {
                 echo '<div class="success">Nombre de usuario o contraseña incorrectos.</div>';
             }

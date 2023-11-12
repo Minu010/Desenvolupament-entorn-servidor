@@ -15,7 +15,16 @@
             // Llamando conexion.php para conectar a la base de datos
             include("../modelo/modelo.php");
             include("../controlador/controlador.php");
+
+            // Verificar si el formulario se ha enviado y procesado en el servidor
+            if (isset($_POST['login'])) {
+                // Aquí puedes verificar las credenciales del usuario y realizar acciones necesarias
+
+                // Después de procesar el formulario, mostrar el mensaje con JavaScript
+                echo '<script>alert("¡Sesión iniciada!");</script>';
+            }
             ?>
+            
             <div class="card">
                 <h2>INICIAR SESIÓN</h2>
                 <div class="">
@@ -33,7 +42,7 @@
                     
                     <!-- Botón para enviar el formulario -->
                     <div class="cuenta">
-                        <input class="boton" type="submit" name="login">
+                        <button class="boton" type="submit" name="login">Login</button>
                         <p>¿No tienes una cuenta? <a href="../vista/registro.php">Regístrate aquí</a></p>
                     </div>
                 </div>

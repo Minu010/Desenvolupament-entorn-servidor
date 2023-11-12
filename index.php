@@ -11,12 +11,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
+<script type="text/javascript">function Confirm() {var respuesta = confirm("Estás seguro de salir de la sesión?");if (respuesta == true) {return true;}else {return false;}}</script>
+
 <body>
     <h1>CATÁLOGO DE PRODUCTOS</h1>
     <!--Barra de navegación-->
     <form action="" method="POST">
         <div class="navbar">
-            <button><a href="vista/login.php" class="boton" name="logout">logout</a></button>
+            <button onclick="return Confirm()"><a href="vista/login.php" class="boton" name="logout">logout</a></button>
         </div>
         </form>
     <div class="container">
