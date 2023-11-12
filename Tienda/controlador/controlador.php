@@ -32,10 +32,8 @@
                 
                 if ($conexion->query($query) === TRUE) {
                     // Si todo es correcto, enviará un mensaje de éxito
-                    echo '
-                    <div class="success" >Usuario registrado correctamente</div>
-                    ';
-                    header("Location:../vista/login.php");
+                    echo "<script>alert('Usuario registrado correctamente');</script>";
+                    echo '<meta http-equiv="refresh" content="0;url=../vista/login.php">';
                 } else {
                     // En caso de error al ejecutar la consulta SQL, mostrar el mensaje de error
                     echo '<div class="error">Error al registrar usuario: ' . $conexion->error . '</div>';
