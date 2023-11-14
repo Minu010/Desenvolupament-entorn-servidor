@@ -18,7 +18,25 @@ class Database {
         return $conexion_bd;
     }
 }
+/*
+class AdminUser {
+    private $db;
 
+    public function constructor() {
+        $this->db = new Database();
+    }
+
+    public function adminConectar() {
+        $conexion = $this->db->conectar();
+
+        $conexion->close();
+    }
+}
+
+// Uso de las clases
+$adminUser = new AdminUser();
+$adminUser->utilizarConexion();
+*/
 function card() {
     $nombres_productos = ["Chancla", "Deportivas", "Zapatos"];
 
