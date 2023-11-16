@@ -1,6 +1,5 @@
 <?php 
-    include("./models/models.php");
-    include("./controllers/controllers.php");
+ //   include("../models/models.php");
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +34,10 @@
         <!-- MOSTRAR ALUMNOS REGISTRADOS-->
         <h2>MOSTRAR ALUMNOS REGISTRADOS</h2>
         <input type="submit" value="mostrar" name="mostrar">
+
+        <!-- MOSTRAR CURSOS-->
+        <h2>VER CURSOS</h2>
+        <input type="submit" value="cursos" name="verCursos">
     </form> 
 </body>
 </html>
