@@ -41,13 +41,13 @@ if (isset($_POST["mostrar"])) {
 }
 
 if (isset($_POST["enviarCursos"])) {
-    if (empty($_POST["nombre"]) or empty($_POST["ano"])) {
+    if (empty($_POST["nombre"]) or empty($_POST["año"])) {
         // Si uno de los datos está vacío, enviará un mensaje de error
         echo '<div class="alerta">Uno de los campos está vacío</div>';
     } else {
         // El usuario ha enviado datos
         $nombreCursos = $_POST["nombre"];
-        $yearCursos = $_POST["ano"];
+        $yearCursos = $_POST["año"];
 
         // Ejecutar la consulta SQL para insertar datos en la base de datos
         $queryCursos = "INSERT INTO cursos(nombre, año) VALUES ('$nombreCursos', '$yearCursos')";
@@ -80,6 +80,22 @@ if (isset($_POST["mostrarCursos"])) {
         // Redirigir a la página que mostrará los cursos
         header("Location: ../views/mostrarCursos.php");
         exit(); // Asegúrate de salir después de la redirección
+    }
+
+    if (isset($_POST["eliminarCurso"])) {
+        $cursoId = $_POST["cursoId"];
+    
+        // Eliminar alumnos matriculados en el curso
+        $eliminarAlumnos = "DELETE FROM alumnos WHERE cursos = $cursoId";
+        $conexion->query($eliminarAlumnos);
+    
+        // Eliminar el curso
+        $eliminarCurso = "DELETE FROM cursos WHERE id = $cursoId";
+        if ($conexion->query($eliminarCurso) === TRUE) {
+            echo "Curso y alumnos matriculados eliminados correctamente";
+        } else {
+            echo "Error al eliminar el curso: " . $conexion->error;
+        }
     }
 }
 ?>

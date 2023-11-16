@@ -20,7 +20,7 @@
 
         <!-- AÑO -->
         <label for="year">Año:</label>
-        <input type="number" id="year" name="ano" min="1900" max="2100" step="1">
+        <input type="number" id="year" name="año" min="1900" max="2100" step="1">
 
 
         <!-- ENVIAR -->
