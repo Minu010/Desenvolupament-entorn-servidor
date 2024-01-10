@@ -9,7 +9,11 @@
     <title>Document</title>
 </head>
 <body>
+
     <h1 class="text-center p-3">CRUD en Laravel</h1>
+    <br>
+    <a href="{{ route('login') }}" class="btn btn-primary">Iniciar sesión</a>
+    <br>
     @if(session("correcto"))
       <div class="alert alert-success">{{session("correcto")}}</div>
     @endif
