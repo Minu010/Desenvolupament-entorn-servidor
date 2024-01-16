@@ -16,6 +16,9 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        if (auth()->user()->is_admin) {
+            return $next($request);
+        }
+        return redirect('home')->with('error', "No tienes permisos de administrador");
     }
 }

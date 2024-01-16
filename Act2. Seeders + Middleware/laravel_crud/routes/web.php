@@ -2,29 +2,38 @@
 
 use App\Http\Controllers\CrudController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController; // Asegúrate de que esta ruta sea correcta
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
+// Redirección de la ruta raíz a /dashboard si está autenticado, si no, a /login
+Route::get('/', function () {
+    return redirect('/dashboard');
+});
 
-Route::get("/",[CrudController::class,"index"])->name("crud.index");
+// Define la ruta para mostrar el formulario de inicio de sesión y asígnale el nombre 'login'
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
-//ruta para añadir pokémons
-Route::post("/registrar-pokémons",[CrudController::class,"create"])->name("crud.create");
+// Define la ruta para manejar el envío del formulario de inicio de sesión
+Route::post('/login', [LoginController::class, 'login']);
 
-//ruta para modificar pokémons
-Route::post("/modificar-pokémons",[CrudController::class,"update"])->name("crud.update");
+// Rutas de autenticación
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-//ruta para eliminar pokémon
-Route::get("/eliminar-pokémons-{Id}",[CrudController::class,"delete"])->name("crud.delete");
+// Ruta del dashboard protegida por el middleware 'auth'
+Route::get('/dashboard', function () {
+    return view('dashboard'); // Asegúrate de que la vista 'dashboard' exista
+})->middleware('auth');
+
+// Rutas CRUD para pokémons con middleware 'admin'
+Route::middleware('admin')->group(function () {
+    Route::post("/registrar-pokemons", [CrudController::class, "create"])->name("crud.create");
+    Route::post("/modificar-pokemons", [CrudController::class, "update"])->name("crud.update");
+    Route::get("/eliminar-pokemons-{Id}", [CrudController::class, "delete"])->name("crud.delete");
+});
